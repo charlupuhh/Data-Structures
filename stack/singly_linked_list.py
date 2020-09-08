@@ -9,15 +9,34 @@ class LinkedList:
         self.tail = None  # point to the last node in the list
         self.length = 0
 
-    # def __str__(self):
-    #     output = " "
-    #     current = self.head
-    #     while current is not None:
-    #         output += f'{current.value} ->'
-    #         current = current.next
 
-    #     return output
+    def __str__(self):
+        output = " "
+        current = self.head
+        while current is not None:
+            output += f'{current.value} -> '
+            current = current.next
 
+        return output
+
+    def add_to_head(self, value):
+        # Check if there's a head
+        # If there is no head (empty list)
+        if self.head is None:
+        # Create a new node
+            new_head = Node(value)
+        # Set self.head and self.head to the new node
+            self.head = new_head
+            self.head = new_head
+        else:
+        # Create a new node with the value we want to add
+            new_head = Node(value)
+        # set New Head.next to the old head node
+            old_head = self.head
+            new_head.next = old_head
+        # Set self.head to the new node
+            self.head = new_head
+        self.length += 1    
 
     def add_to_tail(self, value):
         # Check if there's a tail
