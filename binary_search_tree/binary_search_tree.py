@@ -9,6 +9,9 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+from queue import Queue 
+from stack import Stack 
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -62,17 +65,64 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self):
-        pass
+        if self.value is None:
+            return
+        if self.left:
+            self.left.in_order_print()
+
+        print(self.value)
+
+        if self.right:
+            self.right.in_order_print()
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self):
-        pass
+        curr_node = self
+        # instantiate a queue
+        q = Queue()
+        # enqueue our starting node (self)
+        q.enqueue(curr_node)
+        # while the queue is not empty
+        while len(q) > 0:
+            # dequeue the current node
+            curr_node = q.dequeue()
+            # print the nodes value
+            print(curr_node.value)
+            # check if left child exists
+            if curr_node.left is not None:
+                # enqueue left child
+                q.enqueue(curr_node.left)
+
+            # check if right child exists
+            if curr_node.right is not None:
+                # enqueue right child            
+                q.enqueue(curr_node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self):
-        pass
+        curr_node = self
+        # instantiate a stack
+        q = Stack()
+        # push our starting node (self)
+        q.push(curr_node)
+        # while the stack is not empty
+        while len(q) > 0:
+            # pop the current node
+            curr_node = q.pop()
+            # print the nodes value
+            print(curr_node.value)
+
+            # check if left child exists
+            if curr_node.left is not None:
+                # push left child
+                q.push(curr_node.left)
+
+            # check if right child exists
+            if curr_node.right is not None:
+                # push right child
+                q.push(curr_node.right)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
@@ -85,21 +135,21 @@ class BSTNode:
     def post_order_dft(self):
         pass
 
-# """
-# This code is necessary for testing the `print` methods
-# """
-# bst = BSTNode(1)
+"""
+This code is necessary for testing the `print` methods
+"""
+bst = BSTNode(1)
 
-# bst.insert(8)
-# bst.insert(5)
-# bst.insert(7)
-# bst.insert(6)
-# bst.insert(3)
-# bst.insert(4)
-# bst.insert(2)
+bst.insert(8)
+bst.insert(5)
+bst.insert(7)
+bst.insert(6)
+bst.insert(3)
+bst.insert(4)
+bst.insert(2)
 
-# bst.bft_print()
-# bst.dft_print()
+bst.bft_print()
+bst.dft_print()
 
 # print("elegant methods")
 # print("pre order")

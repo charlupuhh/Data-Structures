@@ -31,7 +31,7 @@ Stretch: What if you could only use instances of your Stack class to implement t
 #             return self.storage.pop(0)
 #         return None
 
-# from singly_linked_list import LinkedList
+from singly_linked_list import LinkedList
 
 class Queue:
     def __init__(self):
